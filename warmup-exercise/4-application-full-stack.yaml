@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: position-simulator
+  namespace: test
 spec:
   selector:
     matchLabels:
@@ -27,6 +28,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: position-tracker
+  namespace: test
 spec:
   selector:
     matchLabels:
@@ -52,6 +54,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: api-gateway
+  namespace: test
 spec:
   selector:
     matchLabels:
@@ -77,6 +80,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: webapp
+  namespace: test
 spec:
   selector:
     matchLabels:
@@ -101,6 +105,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: vehicle-telemetry
+  namespace: test
 spec:
   selector:
     matchLabels:
@@ -125,6 +130,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: staff-service
+  namespace: test
 spec:
   selector:
     matchLabels:
@@ -148,6 +154,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: photo-service
+  namespace: test
 spec:
   selector:
     matchLabels:
@@ -172,6 +179,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: fleetman-webapp
+  namespace: test
 spec:
   # This defines which pods are going to be represented by this Service
   # The service becomes a network endpoint for either other services
@@ -188,6 +196,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: fleetman-position-tracker
+  namespace: test
 
 spec:
   # This defines which pods are going to be represented by this Service
@@ -204,6 +213,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: fleetman-api-gateway
+  namespace: test
 spec:
   selector:
     app: api-gateway
@@ -216,6 +226,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: fleetman-vehicle-telemetry
+  namespace: test
 spec:
   selector:
     app: vehicle-telemetry
@@ -228,6 +239,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: fleetman-staff-service
+  namespace: test
 spec:
   selector:
     app: staff-service
@@ -240,6 +252,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: fleetman-photo-service
+  namespace: test
 spec:
   selector:
     app: photo-service
@@ -253,6 +266,7 @@ apiVersion: networking.istio.io/v1alpha3
 kind: ServiceEntry
 metadata:
   name: fleetman-driver-monitoring
+  namespace: test
 spec:
   hosts:
   - 2oujlno5e4.execute-api.us-east-1.amazonaws.com
@@ -271,6 +285,7 @@ apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
   name: fleetman-driver-monitoring
+  namespace: test
 spec:
   hosts:
   - 2oujlno5e4.execute-api.us-east-1.amazonaws.com
@@ -287,6 +302,7 @@ apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
 metadata:
   name: fleetman-driver-monitoring
+  namespace: test
 spec:
   host: 2oujlno5e4.execute-api.us-east-1.amazonaws.com
   trafficPolicy:
